@@ -1,0 +1,135 @@
+{
+    "title": "ACE Provisioning ManagementPartner",
+    "description": "This API describe ACE Provisioning ManagementPartner",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/managementpartner-ManagementPartner/2018-02-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Operation_List": {
+            "main": "./lib/actions/Operation_List.js",
+            "title": "Get operations.",
+            "description": "List all the operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operation_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Partner_Delete": {
+            "main": "./lib/actions/Partner_Delete.js",
+            "title": "Delete a specific `Partner`.",
+            "description": "Delete the management partner for the objectId and tenantId.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Partner_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Partner_Get": {
+            "main": "./lib/actions/Partner_Get.js",
+            "title": "Get a specific `Partner`.",
+            "description": "Get the management partner using the partnerId, objectId and tenantId.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Partner_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Partner_Update": {
+            "main": "./lib/actions/Partner_Update.js",
+            "title": "Update a specific `Partner`.",
+            "description": "Update the management partner for the objectId and tenantId.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Partner_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Partner_Create": {
+            "main": "./lib/actions/Partner_Create.js",
+            "title": "Create a specific `Partner`.",
+            "description": "Create a management partner for the objectId and tenantId.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Partner_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
